@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block content %}
+<h2 style="color: rgb(120, 106, 133); text-align: center; margin-top: 20px">
+  Starters
+</h2>
+
+<div
+  class="container-fluid"
+  style="display: flex; justify-content: space-between"
+>
+  <div
+    class="row justify-content-center"
+    style="flex: 1; overflow-y: auto; max-height: 80vh"
+  >
+    {% for s in starter %}
+    <div class="col-md-4" style="margin-bottom: 20px">
+      <div
+        style="
+          background: rgba(241, 170, 164, 0.8); /* Add transparency */
+          border-radius: 15px;
+          padding: 15px;
+          width: 100%;
+          max-width: 250px; /* Set a max width for cards */
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+          text-align: center;
+          transition: transform 0.3s;
+        "
+      >
+        <img
+          src="{{ s.simg }}"
+          alt="{{ s.name }}"
+          style="
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* Maintain aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          "
+        />
+        <h3 style="color: #fff; margin: 15px 0 5px">{{ s.name }}</h3>
+        <p style="color: #fdfd96; font-weight: bold">Price: ₹{{ s.price }}/-</p>
+        <button
+          style="
+            background-color: #f76c6c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          "
+          onclick="addItem('{{ s.name }}', '{{ s.price }}')"
+        >
+          Add to Bill
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .col-md-4 div:hover {
+    transform: scale(1.05);
+  }
+
+  button:hover {
+    background-color: #f55a5a;
+  }
+</style>
+
+{% endblock %}
